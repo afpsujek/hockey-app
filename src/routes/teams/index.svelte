@@ -1,13 +1,15 @@
 <script context="module">
 	export async function preload() {
-		const resp = await this.fetch('teams')
-		const data = await resp.json();
-		return {teams: data}
+		return await this.fetch('teams.json')
+							.then(resp => resp.json())
+							.then(teams => {
+								return { teams }
+							});
 	}
 </script>
 
 <script>
-	export let teams;
+	export let teams = [];
 </script>
 
 <svelte:head>
@@ -16,7 +18,7 @@
 
 <ul>
 	{#each teams as team}
-		<li>{team.name}</li>
+		<li><a rel="prefetch" href="teams/{team.id}">{team.name}</a></li>
 	{/each}
 </ul>
 

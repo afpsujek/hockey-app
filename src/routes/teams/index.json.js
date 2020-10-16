@@ -16,8 +16,6 @@ export async function get(req, res, next) {
             name: team.name
         }
     }))
-
-    console.log(json)
     
     res.end(json);
 }

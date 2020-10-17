@@ -5,9 +5,13 @@ export async function get(req, res, next) {
         'Content-Type': 'application/json'
     });
 
-    const resp = await axios.get(`https://statsapi.web.nhl.com/api/v1/teams/${req.params.id}`);
+    const teamResp = await axios.get(`https://statsapi.web.nhl.com/api/v1/teams/${req.params.id}`);
+    const rosterResp = await axios.get(`https://statsapi.web.nhl.com/api/v1/teams/${req.params.id}/roster`)
 
-    var json = JSON.stringify(resp.data.teams[0])
+    var json = JSON.stringify({
+        teamData: teamResp.data.teams[0],
+        teamRoster: rosterResp.data.roster,
+    });
     
     res.end(json);
 }

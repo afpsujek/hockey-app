@@ -3,7 +3,6 @@
 		return await this.fetch(`teams/${params.id}.json`)
 							.then(resp => resp.json())
 							.then(team => {
-								console.log(team)
 								return { 
 									team: team.teamData,
 									roster: team.teamRoster 
@@ -17,6 +16,10 @@
 	export let roster;
 </script>
 
+<svelte:head>
+	<title>{team.name}</title>
+</svelte:head>
+
 <h1>
     {team.name}
 </h1>
@@ -24,7 +27,7 @@
 {#each roster as player}
 	<li>
 		{player.person.fullName}
-		{player.person.id}
+		<a rel="prefetch" href="players/{player.person.id}">{player.person.id}</a>
 	</li>
 {/each}
 

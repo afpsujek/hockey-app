@@ -10,11 +10,22 @@
 
 <script>
 	export let teams = [];
+	import { season } from "../../stores/season";
 </script>
 
 <svelte:head>
 	<title>Teams</title>
 </svelte:head>
+
+<h1>
+	Season
+</h1>
+<form>
+	<label>Start</label>
+	<input type="text" bind:value={$season.startSeason}>
+	<label>End</label>
+	<input type="text" bind:value={$season.endSeason}>
+</form>
 
 <ul>
 	{#each teams as team}

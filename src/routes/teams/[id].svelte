@@ -14,6 +14,7 @@
 <script>
 	export let team;
 	export let roster;
+	import { season } from '../../stores/season'
 </script>
 
 <svelte:head>
@@ -27,7 +28,7 @@
 {#each roster as player}
 	<li>
 		{player.person.fullName}
-		<a rel="prefetch" href="players/{player.person.id}">{player.person.id}</a>
+		<a rel="prefetch" href="players/{player.person.id}/{$season.seasonApiVal}">{player.person.id}</a>
 	</li>
 {/each}
 

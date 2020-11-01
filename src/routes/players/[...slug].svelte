@@ -1,6 +1,7 @@
 <script context="module">
 	export async function preload({ params }) {
-		return await this.fetch(`players/${params.id}.json`)
+		let routeVals = { id: params.slug[0], season: params.slug[1] }
+		return await this.fetch(`players/${routeVals.id}/${routeVals.season}.json`)
 							.then(resp => resp.json())
 							.then(player => {
 								return { 
@@ -12,7 +13,7 @@
 
 
 <script>
-    export let player;
+	export let player;
 </script>
 
 <svelte:head>

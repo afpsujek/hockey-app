@@ -5,7 +5,8 @@
 							.then(resp => resp.json())
 							.then(player => {
 								return { 
-									player: player.playerData
+									player: player.playerData,
+									goals: player.goalData
 								}
 							});
     }
@@ -14,6 +15,7 @@
 
 <script>
 	export let player;
+	export let goals;
 </script>
 
 <svelte:head>
@@ -23,3 +25,6 @@
 <h1>
     {player.fullName}
 </h1>
+{#each goals as goal}
+	<li>{goal.game.link}</li>
+{/each}

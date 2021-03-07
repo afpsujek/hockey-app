@@ -1,7 +1,7 @@
 <script context="module">
 	export async function preload({ params }) {
-		let routeVals = { id: params.slug[0], season: params.slug[1] }
-		const res = await this.fetch(`players/${routeVals.id}/${routeVals.season}.json`)
+		let routeVals = { id: params.slug[0], game: params.slug[1] }
+		const res = await this.fetch(`players/${routeVals.id}/${routeVals.game}.json`)
 		const respJson = await res.json()
 		return { player: respJson.playerData, goals: respJson.goalData }
     }
@@ -20,8 +20,3 @@
 <h1>
     {player.fullName}
 </h1>
-{#each goals as goal}
-	<li>
-		<a rel="prefetch" href="goals/{player.id}/{goal.game.gamePk}">{goal.date}</a>
-	</li>
-{/each}
